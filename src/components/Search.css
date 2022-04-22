@@ -11,5 +11,5 @@
 
 #searchBox:focus {
   outline: none;
-  box-shadow: 0 0 4px 3px var(--indigo);
+  box-shadow: 0 0 4px 3px var(--whiteColor);
 }
