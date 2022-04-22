@@ -1,27 +1,28 @@
-const listOfItems = [
-  {
-    title: "react",
-    url: "https://github.com/gautham-g-nayak",
-    createdAt: "2022-09-02",
-    num_comments: 12,
-    objectId: 1,
-  },
-  {
-    title: "TypeScript",
-    url: "https://github.com/gautham-g-nayak",
-    createdAt: "2022-04-19",
-    num_comments: 1,
-    objectId: 2,
-  },
-];
+import "./List.css";
 
-const List = () => {
+const List = ({ listOfItems }: any) => {
   return (
     <div>
-      <ul>
-        <li>{listOfItems[0].title}</li>
-        <li>{listOfItems[0].url}</li>
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Author</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          {listOfItems.map((item: any) => (
+            <tr key={item.objectID}>
+              <td className="itemTitle">{item.title}</td>
+              <td className="itemUrl">{item.url}</td>
+              <td>{item.author}</td>
+              <td>{item.num_comments}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
