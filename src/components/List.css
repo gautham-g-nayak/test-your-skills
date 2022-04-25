@@ -22,10 +22,10 @@ th,
 td {
   padding: 10px;
   text-align: left;
+  flex: 1;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  flex: 1;
 }
 
 th:nth-child(2),

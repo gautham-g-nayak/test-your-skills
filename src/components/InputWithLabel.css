@@ -13,3 +13,12 @@
   outline: none;
   box-shadow: 0 0 4px 3px var(--whiteColor);
 }
+
+#searchButton {
+  background-color: var(--whiteColor);
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin: 10px 10px;
+  cursor: pointer;
+}
