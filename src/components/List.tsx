@@ -15,15 +15,19 @@ const SORT_COLUMNS = {
 };
 
 const List = ({ listOfItems }: ListProps) => {
-  const [sortedList, setSortedList] = useState(listOfItems);
+  const [sortedList, setSortedList] = useState({ data: listOfItems, flag: true });
+  const [arrowDirection, setArrowDirection] = useState("");
+
 
   function handleSort(column: "title" | "url" | "author") {
-    const sortedListOfItems = [...sortedList.sort(SORT_COLUMNS[column])];
+    const sortedListOfItems = { data: sortedList.flag ? [...sortedList.data.sort(SORT_COLUMNS[column])] : [...sortedList.data.sort(SORT_COLUMNS[column])].reverse(), flag: !sortedList.flag };
+    setArrowDirection(sortedListOfItems.flag ? "false" : "true");
     setSortedList(sortedListOfItems);
   }
 
   return (
     <div>
+      <h4 style={{marginTop : 100}}>{arrowDirection == "" ? " " : arrowDirection == "true" ? " ↑ Ascending": " ↓ Descending"}</h4>
       <table>
         <thead>
           <tr>
@@ -35,7 +39,7 @@ const List = ({ listOfItems }: ListProps) => {
           </tr>
         </thead>
         <tbody>
-          {sortedList.map((item) => (
+          {sortedList.data.map((item) => (
             <Item key={item.objectID} item={item} />
           ))}
         </tbody>
