@@ -1,32 +1,42 @@
+import React, { useEffect } from "react";
 import "./List.css";
 import Item from "./Item";
 import { StoryType } from "../types";
+import { useState } from "react";
 
 type ListProps = {
   listOfItems: Array<StoryType>;
-  onClickDelete: (e: number) => void;
 };
 
-const List = ({ listOfItems, onClickDelete }: ListProps) => {
+const SORT_COLUMNS = {
+  title: (a: StoryType, b: StoryType) => a?.title?.localeCompare(b?.title),
+  url: (a: StoryType, b: StoryType) => a?.url?.localeCompare(b?.url),
+  author: (a: StoryType, b: StoryType) => a?.author?.localeCompare(b?.author),
+};
+
+const List = ({ listOfItems }: ListProps) => {
+  const [sortedList, setSortedList] = useState(listOfItems);
+
+  function handleSort(column: "title" | "url" | "author") {
+    const sortedListOfItems = [...sortedList.sort(SORT_COLUMNS[column])];
+    setSortedList(sortedListOfItems);
+  }
+
   return (
     <div>
       <table>
         <thead>
           <tr>
-            <th>Title</th>
-            <th>URL</th>
-            <th>Author</th>
+            <th onClick={() => handleSort("title")}>Title</th>
+            <th onClick={() => handleSort("url")}>URL</th>
+            <th onClick={() => handleSort("author")}>Author</th>
             <th>Comments</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {listOfItems.map((item) => (
-            <Item
-              key={item.objectID}
-              item={item}
-              onClickDelete={onClickDelete}
-            />
+          {sortedList.map((item) => (
+            <Item key={item.objectID} item={item} />
           ))}
         </tbody>
       </table>
@@ -34,4 +44,4 @@ const List = ({ listOfItems, onClickDelete }: ListProps) => {
   );
 };
 
-export default List;
+export default React.memo(List);
