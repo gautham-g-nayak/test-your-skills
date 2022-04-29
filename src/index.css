@@ -1,6 +1,7 @@
 :root {
   box-sizing: border-box;
   --whiteColor: rgb(230, 230, 230);
+  --whiteColor-dark: #d6d6d6;
   --backgroundColor: rgb(30, 30, 30);
   --foregroundColor: rgb(50, 50, 51);
 }

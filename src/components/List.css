@@ -1,6 +1,6 @@
 table {
   border-collapse: collapse;
-  margin-top: 1rem;
+  margin-top: 6rem;
   width: 100%;
 }
 
@@ -36,4 +36,17 @@ th:nth-child(2),
 
 tr:nth-child(even) {
   background-color: var(--foregroundColor);
+}
+
+th:hover {
+  background-color: var(--whiteColor-dark);
+  cursor: pointer;
+}
+
+.deleteButton {
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  color: rgb(247, 83, 83);
 }
